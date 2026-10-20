@@ -1,0 +1,25 @@
+# Local Python artifacts
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Private source data and customer identifiers
+/data/raw/
+/customer_master.csv
+**/customer_master.csv
+*private*.csv
+
+# Regenerable intermediate outputs, not needed in the public repository
+/data/processed/
+/sql/customers.sqlite
+
+# Editors and local temporary files
+.vscode/
+.idea/
+*.log
+*.tmp

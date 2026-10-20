@@ -1,0 +1,24 @@
+{
+  "source_csv": "data/public/customer_analytics.csv",
+  "pages": 3,
+  "visuals": 26,
+  "dax_measures": [
+    "Total Customers",
+    "Countries Covered",
+    "Segments Covered",
+    "Average Acquisition Cost",
+    "Median Acquisition Cost",
+    "Total Recorded Cost",
+    "Average Customer Age",
+    "Postal Mismatch Records",
+    "Postal Checked Records",
+    "Postal Mismatch Rate",
+    "Customers in Consumer Segment"
+  ],
+  "visuals_by_page": {
+    "Executive Overview": 10,
+    "Customer Segmentation": 8,
+    "Data Quality": 8
+  },
+  "notes": "Static structural checks performed. Visuals were not executed inside Power BI Desktop."
+}

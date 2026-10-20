@@ -1,0 +1,33 @@
+{
+  "anova_customer_segment": {
+    "f_statistic": 0.49840782462582284,
+    "p_value": 0.683376609305967,
+    "eta_squared": 5.9814931876590765e-05
+  },
+  "anova_customer_country": {
+    "f_statistic": 0.6819736517843928,
+    "p_value": 0.6642501417233843,
+    "eta_squared": 0.00016369271820035824
+  },
+  "anova_region": {
+    "f_statistic": 0.3542902888960817,
+    "p_value": 0.8412040258590678,
+    "eta_squared": 5.669457132386803e-05
+  },
+  "anova_gender": {
+    "f_statistic": 1.514127113839299,
+    "p_value": 0.22002031257547988,
+    "eta_squared": 0.00012113003220972095
+  },
+  "age_vs_acquisition_cost_pearson": {
+    "r": 0.00020993392250518057,
+    "p_value": 0.9735216305411682
+  },
+  "country_vs_segment_chi_square": {
+    "chi_squared": 9.832642817961325,
+    "p_value": 0.9372319003650148,
+    "degrees_of_freedom": 18,
+    "cramers_v": 0.011449973984227403,
+    "minimum_expected_cell_count": 78.089
+  }
+}

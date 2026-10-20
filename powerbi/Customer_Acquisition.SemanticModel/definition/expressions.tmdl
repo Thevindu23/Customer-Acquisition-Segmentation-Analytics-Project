@@ -1,0 +1,1 @@
+expression Customer_CSV_Path = "C:\REPLACE_WITH_FULL_PATH\customer_analytics.csv" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]

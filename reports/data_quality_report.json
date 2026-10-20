@@ -1,0 +1,49 @@
+{
+  "total_records": 25000,
+  "total_columns_in_analysis_extract": 8,
+  "duplicate_rows": 0,
+  "duplicate_record_ids": 0,
+  "missing_cells": 0,
+  "missing_by_column": {
+    "record_id": 0,
+    "customer_age": 0,
+    "gender": 0,
+    "customer_segment": 0,
+    "customer_country": 0,
+    "region": 0,
+    "customer_acquisition_cost": 0,
+    "postal_format_check": 0
+  },
+  "invalid_age_outside_18_to_110": 0,
+  "negative_acquisition_costs": 0,
+  "invalid_record_ids_format": 0,
+  "unrecognized_postal_check_flags": 0,
+  "postal_code_format_review_by_country": {
+    "Australia": {
+      "rows_checked": 1233,
+      "format_mismatches": 1233
+    },
+    "Canada": {
+      "rows_checked": 1279,
+      "format_mismatches": 1279
+    },
+    "Germany": {
+      "rows_checked": 2046,
+      "format_mismatches": 0
+    },
+    "India": {
+      "rows_checked": 1041,
+      "format_mismatches": 1041
+    },
+    "UK": {
+      "rows_checked": 3701,
+      "format_mismatches": 3701
+    },
+    "USA": {
+      "rows_checked": 14925,
+      "format_mismatches": 0
+    }
+  },
+  "postal_code_format_mismatches_reviewed_countries": 7254,
+  "postal_code_note": "Flags were derived from the private source before removing postal codes. They are formatting heuristics, not evidence that an address exists. UAE postal codes were not checked; country/state/city match is not verified."
+}

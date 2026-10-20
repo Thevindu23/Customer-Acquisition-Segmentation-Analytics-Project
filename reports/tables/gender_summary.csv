@@ -1,0 +1,4 @@
+gender,customers,total_acquisition_cost,average_acquisition_cost,median_acquisition_cost,average_age,customer_share_pct,acquisition_cost_share_pct
+Female,12048,506054.17000,42.00317,41.85000,45.88073,48.19200,48.01301
+Male,11976,507527.81000,42.37874,42.26500,45.91541,47.90400,48.15283
+Non-Binary,976,40411.78000,41.40551,40.41500,46.14959,3.90400,3.83416

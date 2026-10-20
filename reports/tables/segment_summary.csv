@@ -1,0 +1,5 @@
+customer_segment,customers,total_acquisition_cost,average_acquisition_cost,median_acquisition_cost,average_age,customer_share_pct,acquisition_cost_share_pct
+Consumer,13638,576384.01000,42.26309,42.10000,45.88532,54.55200,54.68571
+Premium,6301,264258.98000,41.93921,41.76000,45.69386,25.20400,25.07216
+VIP,2542,106596.11000,41.93395,41.67500,45.84776,10.16800,10.11354
+Business,2519,106754.66000,42.37978,42.23000,46.62565,10.07600,10.12859

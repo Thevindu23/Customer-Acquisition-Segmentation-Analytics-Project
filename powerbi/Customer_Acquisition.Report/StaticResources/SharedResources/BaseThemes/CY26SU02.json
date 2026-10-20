@@ -1,0 +1,15 @@
+{
+  "name": "CY26SU02",
+  "dataColors": [
+    "#2563EB",
+    "#10B981",
+    "#F59E0B",
+    "#8B5CF6",
+    "#06B6D4",
+    "#F97316",
+    "#64748B"
+  ],
+  "background": "#F4F7FC",
+  "foreground": "#152238",
+  "tableAccent": "#2563EB"
+}

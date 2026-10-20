@@ -1,0 +1,115 @@
+table Customers
+
+	measure 'Total Customers' = COUNTROWS(Customers)
+		formatString: #,##0
+
+	measure 'Countries Covered' = DISTINCTCOUNT(Customers[Country])
+		formatString: #,##0
+
+	measure 'Segments Covered' = DISTINCTCOUNT(Customers[Customer Segment])
+		formatString: #,##0
+
+	measure 'Average Acquisition Cost' = AVERAGE(Customers[Acquisition Cost])
+		formatString: #,##0.00
+
+	measure 'Median Acquisition Cost' = MEDIAN(Customers[Acquisition Cost])
+		formatString: #,##0.00
+
+	measure 'Total Recorded Cost' = SUM(Customers[Acquisition Cost])
+		formatString: #,##0.00
+
+	measure 'Average Customer Age' = AVERAGE(Customers[Age])
+		formatString: 0.0
+
+	measure 'Postal Mismatch Records' = CALCULATE(COUNTROWS(Customers), Customers[Postal Check] = "format_mismatch")
+		formatString: #,##0
+
+	measure 'Postal Checked Records' = CALCULATE(COUNTROWS(Customers), Customers[Postal Check] <> "not_checked")
+		formatString: #,##0
+
+	measure 'Postal Mismatch Rate' = DIVIDE([Postal Mismatch Records], [Postal Checked Records])
+		formatString: 0.0%
+
+	measure 'Customers in Consumer Segment' = CALCULATE(COUNTROWS(Customers), Customers[Customer Segment] = "Consumer")
+		formatString: #,##0
+
+	column 'Record ID'
+		dataType: string
+		sourceColumn: record_id
+		summarizeBy: none
+		isHidden
+
+	column 'Age'
+		dataType: int64
+		sourceColumn: customer_age
+		summarizeBy: none
+
+	column 'Gender'
+		dataType: string
+		sourceColumn: gender
+		summarizeBy: none
+
+	column 'Customer Segment'
+		dataType: string
+		sourceColumn: customer_segment
+		summarizeBy: none
+
+	column 'Country'
+		dataType: string
+		sourceColumn: customer_country
+		summarizeBy: none
+		dataCategory: Country
+
+	column 'Region'
+		dataType: string
+		sourceColumn: region
+		summarizeBy: none
+
+	column 'Acquisition Cost'
+		dataType: double
+		sourceColumn: customer_acquisition_cost
+		summarizeBy: none
+		formatString: #,##0.00
+
+	column 'Postal Check'
+		dataType: string
+		sourceColumn: postal_format_check
+		summarizeBy: none
+
+	column 'Age Group'
+		dataType: string
+		sourceColumn: Age Group
+		summarizeBy: none
+		sortByColumn: 'Age Group Order'
+
+	column 'Age Group Order'
+		dataType: int64
+		sourceColumn: Age Group Order
+		summarizeBy: none
+		isHidden
+
+	column 'Cost Band'
+		dataType: string
+		sourceColumn: Cost Band
+		summarizeBy: none
+		sortByColumn: 'Cost Band Order'
+
+	column 'Cost Band Order'
+		dataType: int64
+		sourceColumn: Cost Band Order
+		summarizeBy: none
+		isHidden
+
+	partition Customers = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents(Customer_CSV_Path), [Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"record_id", type text}, {"customer_age", Int64.Type}, {"gender", type text}, {"customer_segment", type text}, {"customer_country", type text}, {"region", type text}, {"customer_acquisition_cost", type number}, {"postal_format_check", type text}}, "en-US"),
+				AddAgeGroup = Table.AddColumn(Typed, "Age Group", each if [customer_age] <= 24 then "18-24" else if [customer_age] <= 34 then "25-34" else if [customer_age] <= 44 then "35-44" else if [customer_age] <= 54 then "45-54" else if [customer_age] <= 64 then "55-64" else "65+", type text),
+				AddAgeOrder = Table.AddColumn(AddAgeGroup, "Age Group Order", each if [customer_age] <= 24 then 1 else if [customer_age] <= 34 then 2 else if [customer_age] <= 44 then 3 else if [customer_age] <= 54 then 4 else if [customer_age] <= 64 then 5 else 6, Int64.Type),
+				AddCostBand = Table.AddColumn(AddAgeOrder, "Cost Band", each if [customer_acquisition_cost] < 20 then "Below 20" else if [customer_acquisition_cost] < 40 then "20-39.99" else if [customer_acquisition_cost] < 60 then "40-59.99" else "60+", type text),
+				AddCostOrder = Table.AddColumn(AddCostBand, "Cost Band Order", each if [customer_acquisition_cost] < 20 then 1 else if [customer_acquisition_cost] < 40 then 2 else if [customer_acquisition_cost] < 60 then 3 else 4, Int64.Type)
+			in
+				AddCostOrder
